@@ -1,0 +1,44 @@
+version: '3.8'
+
+services:
+  postgres:
+    container_name: postgresdb
+    build: ./docker/postgres
+    image: postgresdb
+    ports:
+      - ${POSTGRES_PORT}:${POSTGRES_PORT}
+    networks:
+      dev:
+        aliases:
+          - ${DB_ALIAS}
+    env_file:
+      - .env
+    volumes:
+      - ./docker-data/postgres/data:/var/lib/postgresql/data
+    environment:
+      PGDATA: /var/lib/postgresql/dat
+    restart: always
+
+  nodejs:
+    container_name: nodejs
+    build: ./docker/nodejs
+    image: nodejs
+    networks:
+      dev:
+        aliases:
+          - ${APP_ALIAS}
+    volumes:
+      - .:/app
+      - /app/node_modules
+    env_file:
+      - .env
+    depends_on:
+      - postgres
+    ports:
+     - ${PORT}:${PORT}
+    command: yarn start:dev
+    restart: always
+networks:
+  dev:
+    external:
+      name: dev
