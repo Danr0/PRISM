@@ -1,0 +1,46 @@
+version: '2.4'
+
+services:
+
+  sample-postgres:
+    container_name: sample-postgres
+    build: docker/postgres
+    image: sample-postgres
+    networks:
+      default:
+        aliases:
+          - ${DB_ALIAS}
+    ports:
+    - 5432:5432
+    env_file:
+      - .env
+    volumes:
+    - ./docker-data/postgres/data:/var/lib/postgresql/data
+    environment:
+      PGDATA: /var/lib/postgresql/data/
+    restart: always
+
+  sample-nodejs:
+    container_name: sample-nodejs
+    build: docker/nodejs
+    image: sample-nodejs
+    networks:
+      default:
+        aliases:
+          - ${APP_ALIAS}
+    volumes:
+      - .:/app
+    ports:
+      - 8090:${PORT}
+      - 5555:5555
+    env_file:
+      - .env
+    depends_on:
+      - sample-postgres
+    command: yarn start:dev
+    restart: always
+
+networks:
+  default:
+    external:
+      name: sample
