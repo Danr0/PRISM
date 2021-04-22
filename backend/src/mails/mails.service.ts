@@ -20,7 +20,10 @@ export class MailsService {
             const usr = await this.usersService.findByUsername(user.username);
             mail.body = createMailDto.body;
             mail.attachments = createMailDto.attachments;
-            mail.user = usr;
+            mail.subject = createMailDto.subject;
+            mail.from = createMailDto.from;
+            mail.to = createMailDto.to;
+            mail.user_id = usr.id;
             return await this.mailsRepository.save(mail);
         } catch (e) {
             console.error(e);
@@ -31,9 +34,8 @@ export class MailsService {
     async getAllMails(user: Users): Promise<Mails[]> {
         try {
             return await this.mailsRepository.find({
-                relations: ["user"],
                 where: {
-                    id: user.id
+                    user_id: user.id
                 }
             });
         } catch (e) {

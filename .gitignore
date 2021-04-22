@@ -1,3 +1,4 @@
 .idea
-/back/docker-data/
+backend/docker-data/
+backend/node_modules/
 

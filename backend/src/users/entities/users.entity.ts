@@ -40,6 +40,4 @@ export class Users {
     })
     avatar: string
 
-    @OneToMany(()=> Mails, mails => mails.user)
-    mails: Mails[];
 }

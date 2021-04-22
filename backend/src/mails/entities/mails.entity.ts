@@ -1,5 +1,4 @@
-import {Column, Entity, PrimaryGeneratedColumn, ManyToOne} from 'typeorm'
-import {Users} from "../../users/entities/users.entity";
+import {Column, Entity, PrimaryGeneratedColumn} from 'typeorm'
 
 @Entity({
     name: "mails"
@@ -9,8 +8,17 @@ export class Mails {
     @PrimaryGeneratedColumn()
     id: string;
 
-    @ManyToOne(() => Users, user => user.mails)
-    user: Users
+    @Column()
+    user_id: string
+
+    @Column()
+    from: string
+
+    @Column()
+    to: string
+
+    @Column()
+    subject: string
 
     @Column()
     body: string

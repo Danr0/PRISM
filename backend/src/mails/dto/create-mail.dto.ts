@@ -7,4 +7,10 @@ export class CreateMailDto {
 
     attachments: string;
 
+    from: string
+
+    to: string
+
+    subject: string
+
 }
