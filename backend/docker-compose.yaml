@@ -6,7 +6,7 @@ services:
     build: ./docker/postgres
     image: postgresdb
     ports:
-      - ${POSTGRES_PORT}:${POSTGRES_PORT}
+      - ${POSTGRES_PORT}:5432
     networks:
       dev:
         aliases:
@@ -35,9 +35,23 @@ services:
     depends_on:
       - postgres
     ports:
-     - ${PORT}:${PORT}
+     - ${PORT}:3000
     command: yarn start:dev
     restart: always
+
+  rabbitmq:
+    environment:
+      - RABBITMQ_DEFAULT_USER=${RABBITMQ_DEFAULT_USER}
+      - RABBITMQ_DEFAULT_PASS=${RABBITMQ_DEFAULT_PASS}
+    image: rabbitmq:3-management
+    container_name: 'rabbitmq'
+    ports:
+      - ${RABBIT_PORT}:5672
+      - ${RABBIT_INTERFACE_PORT}:15672
+    networks:
+      dev:
+        aliases:
+          - ${RABBIT_ALIAS}
 networks:
   dev:
     external:
