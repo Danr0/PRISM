@@ -19,10 +19,10 @@ export class MailsService {
             const mail = new Mails();
             const usr = await this.usersService.findByUsername(user.username);
             mail.body = createMailDto.body;
-            mail.attachments = createMailDto.attachments;
+            mail.attachments = JSON.stringify(createMailDto.attachments);
             mail.subject = createMailDto.subject;
             mail.from = createMailDto.from;
-            mail.to = createMailDto.to;
+            mail.to = JSON.stringify(createMailDto.to);
             mail.user_id = usr.id;
             return await this.mailsRepository.save(mail);
         } catch (e) {

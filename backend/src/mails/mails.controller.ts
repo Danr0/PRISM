@@ -15,8 +15,12 @@ export class MailsController {
     @Post()
     @HttpCode(200)
     async createNewMail(@Request() req, @Body() createMailDto: CreateMailDto) {
-
         if (req.user) {
+            let to_mails = createMailDto.to;
+            for (let entry of to_mails) {
+                let obj = {body:createMailDto.body,attachments: createMailDto.attachments,subject:createMailDto.subject,from:createMailDto.from,to:entry};
+                this.client.emit('mail', obj);
+            }
             return(
                 this.mailsService.createNewMail(createMailDto,req.user)
             )
@@ -35,11 +39,16 @@ export class MailsController {
         throw new UnauthorizedException();
     }
 
+    /*
     @Post('test')
     @HttpCode(200)
     async test(@Request() req,  @Body() createMailDto: CreateMailDto) {
-        let obj = {body:createMailDto.body,attachments: createMailDto.attachments,subject:createMailDto.subject,from:createMailDto.from,to:createMailDto.to};
-        this.client.emit('mail', obj);
+        let to_mails = createMailDto.to;
+        for (let entry of to_mails) {
+            let obj = {body:createMailDto.body,attachments: createMailDto.attachments,subject:createMailDto.subject,from:createMailDto.from,to:entry};
+            this.client.emit('mail', obj);
+        }
         return 'true';
     }
+     */
 }
