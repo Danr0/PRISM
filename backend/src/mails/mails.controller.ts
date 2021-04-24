@@ -37,8 +37,9 @@ export class MailsController {
 
     @Post('test')
     @HttpCode(200)
-    async test(@Request() req,  @Body() data: string) {
-        this.client.emit('mail', data);
+    async test(@Request() req,  @Body() createMailDto: CreateMailDto) {
+        let obj = {body:createMailDto.body,attachments: createMailDto.attachments,subject:createMailDto.subject,from:createMailDto.from,to:createMailDto.to};
+        this.client.emit('mail', obj);
         return 'true';
     }
 }
