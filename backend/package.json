@@ -13,7 +13,7 @@
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "nest start",
     "start:prod": "node dist/main",
-    "start:dev": "yarn install && yarn typeorm migration:run && nodemon --config nodemon.json",
+    "start:dev": "yarn install && yarn typeorm schema:sync && nodemon --config nodemon.json",
     "test": "jest"
   },
   "dependencies": {

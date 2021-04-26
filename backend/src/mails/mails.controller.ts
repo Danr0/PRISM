@@ -2,7 +2,7 @@ import {Body, Controller, Get, HttpCode, Inject, Post, Request, UnauthorizedExce
 import {MailsService} from './mails.service';
 import {AuthGuard} from "@nestjs/passport";
 import {CreateMailDto} from "./dto/create-mail.dto";
-import {ClientProxy, Ctx, MessagePattern, Payload, RmqContext} from "@nestjs/microservices";
+import {ClientProxy} from "@nestjs/microservices";
 
 @Controller('/api/mails')
 export class MailsController {
@@ -40,11 +40,12 @@ export class MailsController {
         throw new UnauthorizedException();
     }
 
+    /*
     @MessagePattern('error')
     getNotifications(@Payload() data: string, @Ctx() context: RmqContext) {
         console.log(data);
     }
-    /*
+
     data:
     nodejs      | {
 nodejs      |   err_msg: { code: 'EENVELOPE', command: 'API' },

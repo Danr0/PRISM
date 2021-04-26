@@ -44,5 +44,19 @@ export class MailsService {
         }
     }
 
+    async getMailById(id: string, user: Users): Promise<Mails> {
+        try {
+            return await this.mailsRepository.findOneOrFail({
+                where: {
+                    user_id: user.id,
+                    id: id
+                }
+            })
+        } catch (e) {
+            console.error(e);
+            throw new UnauthorizedException();
+        }
+    }
+
 
 }
