@@ -1,8 +1,8 @@
 {
-  "name": "bdsm-frontend",
+  "name": "prism-back",
   "version": "0.0.1",
-  "description": "Best Digital Spam Mailer",
-  "author": "ikmokhirio",
+  "description": "PRIvate Spam Mailer",
+  "author": "Danr0",
   "private": true,
   "license": "UNLICENSED",
   "scripts": {

@@ -1,5 +1,5 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Users\Danr0\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js add @types/nodemailer-bluebird
+  C:\Program Files\nodejs\node.exe C:\Users\Danr0\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js agent
 
 PATH: 
   C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\dotnet\;C:\Program Files (x86)\IncrediBuild;C:\Program Files\Git\cmd;C:\Program Files\nodejs\;C:\Program Files\Docker\Docker\resources\bin;C:\ProgramData\DockerDesktop\version-bin;C:\Users\Danr0\AppData\Local\Programs\Python\Python38\Scripts\;C:\Users\Danr0\AppData\Local\Programs\Python\Python38\;C:\Users\Danr0\AppData\Local\Microsoft\WindowsApps;;C:\Program Files\JetBrains\PyCharm 2020.2.2\bin;;C:\Users\Danr0\.dotnet\tools;C:\Users\Danr0\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\Danr0\AppData\Roaming\npm
@@ -14,20 +14,24 @@ Platform:
   win32 x64
 
 Trace: 
-  Error: https://registry.yarnpkg.com/@types%2fnodemailer-bluebird: Not found
-      at Request.params.callback [as _callback] (C:\Users\Danr0\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:66988:18)
-      at Request.self.callback (C:\Users\Danr0\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:140662:22)
-      at Request.emit (events.js:315:20)
-      at Request.<anonymous> (C:\Users\Danr0\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:141634:10)
-      at Request.emit (events.js:315:20)
-      at IncomingMessage.<anonymous> (C:\Users\Danr0\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:141556:12)
-      at Object.onceWrapper (events.js:421:28)
-      at IncomingMessage.emit (events.js:327:22)
-      at endReadableNT (internal/streams/readable.js:1327:12)
-      at processTicksAndRejections (internal/process/task_queues.js:80:21)
+  SyntaxError: C:\Users\Danr0\WebstormProjects\PRISM\agent\package.json: Unexpected token , in JSON at position 538
+      at JSON.parse (<anonymous>)
+      at C:\Users\Danr0\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:1625:59
+      at Generator.next (<anonymous>)
+      at step (C:\Users\Danr0\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:310:30)
+      at C:\Users\Danr0\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:321:13
 
 npm manifest: 
   {
+    "name": "prism-agent",
+    "version": "0.0.1",
+    "description": "PRIvate Spam Mailer",
+    "author": "Danr0",
+    "private": true,
+    "license": "UNLICENSED",
+    "scripts": {
+      "dev": "yarn ts-node recieve.ts"
+    },
     "dependencies": {
       "@types/node": "^14.14.41",
       "@types/nodemailer": "^6.4.1",
@@ -39,7 +43,7 @@ npm manifest:
       "ts-node": "^9.1.1",
       "typescript": "^4.2.4"
     }
-  }
+  },
 
 yarn manifest: 
   No manifest
