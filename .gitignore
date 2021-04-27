@@ -3,3 +3,4 @@ backend/docker-data/
 backend/node_modules/
 front/node_modules/
 agent/node_modules/
+square-react-dashboard/node_modules/
