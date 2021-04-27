@@ -22,7 +22,7 @@ const logoProps = {
   title: {
     size: 26,
     color: 'white',
-    text: 'Square'
+    text: 'PRISM'
   },
   image: {
     size: 50,
