@@ -5,6 +5,8 @@ import { changeLogin, changePassword, changeEmail, changeError, registerUser } f
 import {useStyles} from "../../../style";
 import {Alert} from "@material-ui/lab";
 import CloseIcon from "@material-ui/icons/Close";
+import {Link} from "react-router-dom";
+import {SvgLogo} from "../Logo/logo";
 
 const RegisterForm: React.FC  = () => {
     const classes = useStyles();
@@ -13,6 +15,11 @@ const RegisterForm: React.FC  = () => {
   const email = useAppSelector(state => state.registerForm.email);
   const status = useAppSelector(state => state.registerForm.loading);
     const error = useAppSelector(state => state.loginForm.error)
+
+    const logo_svg = {
+        size: 50,
+        color: 'blue'
+    };
 
     function alertForm() {
         return (
@@ -45,7 +52,10 @@ const RegisterForm: React.FC  = () => {
   return (
     <div>
         <FormControl className={classes.input_form}>
-            <h1 className={classes.text}>Register</h1>
+            <div className={classes.logoswithtext}>
+                <SvgLogo size={logo_svg.size} color={logo_svg.color}></SvgLogo>
+                <h1 className={classes.text}>Registration</h1>
+            </div>
             <TextField  className={classes.input} id="email" placeholder="email" label="Email" InputLabelProps={{style: { color: 'black' }}}
                     value={email}
                     onChange={(event) => dispatch(changeEmail(event.target.value))}/>
@@ -57,7 +67,8 @@ const RegisterForm: React.FC  = () => {
                   onChange={(event) => dispatch(changePassword(event.target.value))}/>
             <Button className={classes.button} onClick={
                 () => dispatch(registerUser({email, login, password}))
-            }>Login</Button>
+            }>Register</Button>
+            <Link className={classes.links} to='/login'>Already have account?</Link>
     </FormControl>
         {error !== '' && alertForm()}
     </div>

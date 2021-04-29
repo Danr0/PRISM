@@ -10,9 +10,6 @@ export const Login: React.FC = () => {
   return (
     <div>
         <Box className={useStyles().bg}>
-            <Box display="flex" p={1} >
-                <NavBar name={'Авторизация'}/>
-            </Box>
             <Box display='flex' justifyContent="center" p={10} >
                 <LoginForm/>
             </Box>
@@ -22,3 +19,9 @@ export const Login: React.FC = () => {
   );
 
 }
+/*
+            <Box display="flex" p={1} >
+                <NavBar name={'Авторизация'}/>
+            </Box>
+
+ */

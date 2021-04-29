@@ -9,9 +9,6 @@ export const Register: React.FC = () => {
   return (
       <div>
           <Box className={classes.bg}>
-              <Box display="flex" p={1} >
-                  <NavBar name={'Авторизация'}/>
-              </Box>
               <Box display='flex' justifyContent="center" p={10} >
                   <RegisterForm/>
               </Box>

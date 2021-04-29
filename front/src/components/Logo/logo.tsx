@@ -1,11 +1,13 @@
 import React from 'react'
 
+
+
 interface ILogoImageProps {
     size: number
     color: string
 }
 
-const SvgLogo: React.FC<ILogoImageProps> = props => {
+export const SvgLogo: React.FC<ILogoImageProps> = props => {
     const { size, color } = props
 
     return (
@@ -23,5 +25,3 @@ const SvgLogo: React.FC<ILogoImageProps> = props => {
         </svg>
 )
 }
-
-export default SvgLogo

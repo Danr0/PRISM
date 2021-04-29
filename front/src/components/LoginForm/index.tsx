@@ -5,13 +5,19 @@ import CloseIcon from '@material-ui/icons/Close';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { changeLogin, changePassword, changeError, loginUser } from './@slice';
 import {useStyles} from "../../../style";
+import {SvgLogo} from "../Logo/logo";
+import { Link } from 'react-router-dom';
 
 const LoginForm: React.FC  = () => {
     const classes = useStyles();
   const login = useAppSelector(state => state.loginForm.login);
   const password = useAppSelector(state => state.loginForm.password);
-  const status = useAppSelector(state => state.loginForm.loading)
-    const error = useAppSelector(state => state.loginForm.error)
+  const status = useAppSelector(state => state.loginForm.loading);
+    const error = useAppSelector(state => state.loginForm.error);
+    const logo_svg = {
+        size: 50,
+        color: 'blue'
+    };
 
   const dispatch = useAppDispatch();
 
@@ -42,9 +48,13 @@ const LoginForm: React.FC  = () => {
     }
 
   return (
-    <div>
+    <div className={classes.login_wrapper}>
         <FormControl className={classes.input_form}>
-            <h1 className={classes.text}>Login</h1>
+            <div className={classes.logoswithtext}>
+                <SvgLogo size={logo_svg.size} color={logo_svg.color}></SvgLogo>
+                <h1 className={classes.text}>Login</h1>
+            </div>
+
       <TextField  className={classes.input} id="username" placeholder="username" label="Username" InputLabelProps={{style: { color: 'black' }}}
                   value={login}
                   onChange={(event) => dispatch(changeLogin(event.target.value))}/>
@@ -54,6 +64,7 @@ const LoginForm: React.FC  = () => {
       <Button className={classes.button} onClick={
         () => dispatch(loginUser({login, password}))
       }>Login</Button>
+            <Link className={classes.links} to='/register'>Don't have account?</Link>
         </FormControl>
         {error !== '' && alertForm()}
     </div>

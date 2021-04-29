@@ -1,35 +1,59 @@
-import {makeStyles} from "@material-ui/core/styles";
+import {makeStyles} from "@material-ui/core/styles"
 
 export const useStyles = makeStyles({
     button: {
-        background: 'silver',
-        border: 0,
-        borderRadius: 3,
-        boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
-        color: 'black',
-        height: 48,
-        padding: '0 30px',
-    },
-    input_form: {
-        background: 'gray',
-        border: 0,
-        borderRadius: 3,
-        boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
-        color: 'black',
-        padding: '0 30px',
-        width: '300px'
-    },
-    input: {
-        background: 'gray',
-        color: 'black',
-        "&.Mui-focused": {
-            color: "black"
+        width: '320px',
+        height: '38px',
+        background: '#0062ff',
+        'border-radius': '10px',
+        'border': 'none',
+        'color': 'white',
+        'font-size': '12px',
+        'text-align': 'center',
+        'cursor': 'pointer',
+        'margin-top': '10px',
+        ':focus': {
+            outline: 'none',
+        },
+        ':disabled': {
+            opacity: 0.7,
+            cursor: 'not-allowed',
         }
     },
+    input_form: {
+        display: 'flex',
+        'flex-direction': 'column',
+        'justify-content': 'center',
+        'align-items': 'center',
+        'width': '360px',
+        'min-width': '320px',
+        'height': '300px',
+        'background-color': 'white',
+        'border-radius': '20px',
+        margin: '35px 10px 25px 10px',
+    },
+    login_wrapper: {
+        display: 'flex',
+        position: 'relative',
+    },
+    input: {
+        padding: '0 0 1px 20px',
+        transition: 'all 200ms',
+        opacity: 0.5,
+        color: '#92929d',
+    },
     input_text: {
-        background: 'white',
-        boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
-        height: 48,
+        'z-index': 1,
+        width: '320px',
+        height: '38px',
+        border: '1px solid #f1f1f5',
+        'box-sizing': 'border-box',
+        'border-radius': '15px',
+        'background': '#fafafb',
+        'padding': '0 20px',
+        'margin-bottom': '15px',
+        'font-size': '12px',
+        'color': '#92929d'
     },
     menu_item: {
         background: 'Gray',
@@ -39,7 +63,7 @@ export const useStyles = makeStyles({
         display: 'flex'
     },
     bg: {
-        background: '#C0C0C0',
+        background: '#0062ff',
         position: 'absolute',
         top: 0,
         bottom: 0,
@@ -55,16 +79,16 @@ export const useStyles = makeStyles({
         //'min-height': '90vh'
     },
     text: {
-        color: 'black',
+        color: 'blue',
         display: 'flex',
-        background: 'gray',
         'justify-content': 'center',
         'align-items': 'center',
-        'font-family': "Times New Roman",
+        'font-family': 'Roboto, sans-serif',
+        'font-weight': 300,
     },
     text_style: {
         color: 'black',
-        'font-family': "Times New Roman",
+        'font-family': "Roboto",
     },
     list_item: {
         color: 'black',
@@ -76,10 +100,16 @@ export const useStyles = makeStyles({
         'max-width' : '300px',
         'overflow-wrap': 'break-word',
     },
-    logo: {
-        'height': '29px',
-        'width': '45px',
-        'margin-top': '16px',
+    logoswithtext: {
+        display: 'flex',
+        'align-items': 'center',
+        'justify-content': 'space-between',
+    },
+    links: {
+        'font-family': 'Roboto, sans-serif',
+        'font-size': '15px',
+        'color': 'blue',
+        'text-decoration': 'none',
+        'margin-top': '6px',
     }
-
-});
+})

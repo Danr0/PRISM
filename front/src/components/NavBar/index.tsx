@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import * as React from 'react';
 import Routes, { RoutesNames } from '../../pages/routes';
-import Logo from '../Logo/logo.png';
+import Logo from '../../assets/img/logo.png';
 import {AppBar, Button, Typography, Toolbar, Grid} from "@material-ui/core";
 
 import {useStyles} from "../../../style";
@@ -15,7 +15,7 @@ const NavBar: React.FC<IProps> = (props: IProps) => {
   return (
       <AppBar>
         <Toolbar className={classes.menu} >
-            <img className={classes.logo} src={Logo} alt="website logo" />
+            <img  src={Logo} alt="website logo" />
             <Grid
                 container
                 direction="row"
