@@ -73,7 +73,7 @@ export const useStyles = makeStyles({
         'height': '80px',
         'background-color': 'white',
         'border-radius': '20px',
-        margin: '35px 10px 25px 10px',
+        margin: '15px 15px 15px 15px',
     },
     mails_form: {
         display: 'flex',
@@ -144,6 +144,11 @@ export const useStyles = makeStyles({
         'font-family': 'Roboto, sans-serif',
         'font-weight': 300,
     },
+    text_d: {
+        color: 'black',
+        'font-family': 'Roboto, sans-serif',
+        'font-weight': 300,
+    },
     text_style: {
         color: 'black',
         'font-family': "Roboto",
@@ -162,6 +167,8 @@ export const useStyles = makeStyles({
         width: '15%',
         height: '100%',
         overflow: 'auto',
+        '-ms-overflow-style': 'none',
+        'scrollbar-width': 'none',
     },
     mail_view: {
         width: '85%',
@@ -185,5 +192,15 @@ export const useStyles = makeStyles({
         'color': 'blue',
         'text-decoration': 'none',
         'margin-top': '6px',
+    },
+    table_style: {
+        flexShrink: 0,
+    },
+    logo_profile: {
+        'margin-top': '15px',
+        'margin-left': '10px',
+    },
+    profile: {
+        display: 'flex',
     }
 })

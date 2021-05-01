@@ -42,8 +42,10 @@ const Profile: React.FC  = () => {
             updateProfile();
     }, []);
   return(
-      <div>
-          <SvgLogo size={logo_svg.size} color={logo_svg.color}></SvgLogo>
+      <div className={classes.profile}>
+          <div className={classes.logo_profile}>
+          <SvgLogo  size={logo_svg.size} color={logo_svg.color}></SvgLogo>
+          </div>
           <FormControl className={classes.profile_form}>
               <div className={classes.logoswithtext}>
 
