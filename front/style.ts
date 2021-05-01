@@ -20,14 +20,57 @@ export const useStyles = makeStyles({
             cursor: 'not-allowed',
         }
     },
-    input_form: {
+    logout_button: {
+        width: '120px',
+        height: '38px',
+        background: '#0062ff',
+        'border-radius': '10px',
+        'border': 'none',
+        'color': 'white',
+        'font-size': '12px',
+        'text-align': 'center',
+        'cursor': 'pointer',
+        'margin-top': '10px',
+        'margin-left': '15px',
+        ':focus': {
+            outline: 'none',
+        },
+        ':disabled': {
+            opacity: 0.7,
+            cursor: 'not-allowed',
+        }
+    },
+    login_form: {
         display: 'flex',
         'flex-direction': 'column',
         'justify-content': 'center',
         'align-items': 'center',
         'width': '360px',
-        'min-width': '320px',
+        'min-width': '300px',
         'height': '300px',
+        'background-color': 'white',
+        'border-radius': '20px',
+        margin: '35px 10px 25px 10px',
+    },
+    register_form: {
+        display: 'flex',
+        'flex-direction': 'column',
+        'justify-content': 'center',
+        'align-items': 'center',
+        'width': '370px',
+        'min-width': '320px',
+        'height': '320px',
+        'background-color': 'white',
+        'border-radius': '20px',
+        margin: '35px 10px 25px 10px',
+    },
+    profile_form: {
+        display: 'flex',
+        'justify-content': 'center',
+        'align-items': 'center',
+        'width': '250px',
+        'min-width': '200px',
+        'height': '80px',
         'background-color': 'white',
         'border-radius': '20px',
         margin: '35px 10px 25px 10px',
@@ -35,6 +78,7 @@ export const useStyles = makeStyles({
     login_wrapper: {
         display: 'flex',
         position: 'relative',
+        'flex-direction': 'column',
     },
     input: {
         padding: '0 0 1px 20px',

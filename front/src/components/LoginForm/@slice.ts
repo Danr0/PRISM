@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { fetchData } from '../../utils/API'
+import { fetchData } from '../../utils/API';
 
 // Define a type for the slice state
 export interface Form {

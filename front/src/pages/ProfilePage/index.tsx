@@ -13,9 +13,6 @@ const ProfilePage: React.FC = () => {
   return(
       <div>
           <Box className={useStyles().bg}>
-              <Box display="flex" p={1} >
-                  <NavBar name={'Авторизация'}/>
-              </Box>
               <Box display='flex' justifyContent="center" p={10} >
                   <Profile/>
               </Box>

@@ -4,6 +4,7 @@ import {connectRouter} from "connected-react-router";
 import counterReducer from './components/EmailList/@slice';
 import loginFormReducer from './components/LoginForm/@slice';
 import registerFormReducer from './components/RegisterForm/@slice';
+import getUserProfileReducer from "./components/Profile/@slice";
 
 export const history = createBrowserHistory();
 
@@ -13,7 +14,8 @@ const reducer = {
   router: connectRouter(history),
   counter: counterReducer,
   loginForm: loginFormReducer,
-  registerForm: registerFormReducer
+  registerForm: registerFormReducer,
+  profile: getUserProfileReducer
   // auth:
 }
 

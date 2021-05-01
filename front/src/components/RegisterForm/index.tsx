@@ -5,7 +5,7 @@ import { changeLogin, changePassword, changeEmail, changeError, registerUser } f
 import {useStyles} from "../../../style";
 import {Alert} from "@material-ui/lab";
 import CloseIcon from "@material-ui/icons/Close";
-import {Link} from "react-router-dom";
+import {Link, Redirect} from "react-router-dom";
 import {SvgLogo} from "../Logo/logo";
 
 const RegisterForm: React.FC  = () => {
@@ -50,8 +50,8 @@ const RegisterForm: React.FC  = () => {
   const dispatch = useAppDispatch();
 
   return (
-    <div>
-        <FormControl className={classes.input_form}>
+    <div className={classes.login_wrapper}>
+        <FormControl className={classes.register_form}>
             <div className={classes.logoswithtext}>
                 <SvgLogo size={logo_svg.size} color={logo_svg.color}></SvgLogo>
                 <h1 className={classes.text}>Registration</h1>
@@ -71,6 +71,7 @@ const RegisterForm: React.FC  = () => {
             <Link className={classes.links} to='/login'>Already have account?</Link>
     </FormControl>
         {error !== '' && alertForm()}
+        {localStorage.getItem('token') !== null && <Redirect to='/profile' />}
     </div>
   )
 }
