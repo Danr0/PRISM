@@ -71,7 +71,7 @@ const RegisterForm: React.FC  = () => {
             <Link className={classes.links} to='/login'>Already have account?</Link>
     </FormControl>
         {error !== '' && alertForm()}
-        {localStorage.getItem('token') !== null && <Redirect to='/profile' />}
+        {localStorage.getItem('token') !== null && <Redirect to='/mail' />}
     </div>
   )
 }

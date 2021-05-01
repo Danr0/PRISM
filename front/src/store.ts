@@ -1,7 +1,7 @@
 import {createBrowserHistory} from "history";
 import {configureStore, getDefaultMiddleware} from "@reduxjs/toolkit";
 import {connectRouter} from "connected-react-router";
-import counterReducer from './components/EmailList/@slice';
+import mailsReducer from './components/EmailList/@slice';
 import loginFormReducer from './components/LoginForm/@slice';
 import registerFormReducer from './components/RegisterForm/@slice';
 import getUserProfileReducer from "./components/Profile/@slice";
@@ -12,7 +12,7 @@ const middleware = getDefaultMiddleware({thunk: true})
 
 const reducer = {
   router: connectRouter(history),
-  counter: counterReducer,
+  mails: mailsReducer,
   loginForm: loginFormReducer,
   registerForm: registerFormReducer,
   profile: getUserProfileReducer

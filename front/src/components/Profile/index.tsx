@@ -15,8 +15,8 @@ const Profile: React.FC  = () => {
     const dispatch = useAppDispatch();
 
     const logo_svg = {
-        size: 40,
-        color: 'blue'
+        size: 80,
+        color: 'white'
     };
 
     async function updateProfile(){
@@ -29,7 +29,7 @@ const Profile: React.FC  = () => {
     }
 
     function logout(){
-        // TODO: add blacklisting deleted tokens in back
+        // TODO: add blacklisting deleted tokens on back
         localStorage.removeItem('token');
         dispatch(changeUsername(''));
         dispatch(changeAvatar(null));
@@ -42,15 +42,17 @@ const Profile: React.FC  = () => {
             updateProfile();
     }, []);
   return(
-      <FormControl className={classes.profile_form}>
-          <div className={classes.logoswithtext}>
-              <SvgLogo size={logo_svg.size} color={logo_svg.color}></SvgLogo>
-              <h1 className={classes.text_style}>{username}</h1>
-              <Button className={classes.logout_button} onClick={logout}>Log out</Button>
-          </div>
-          {localStorage.getItem('token') == null && <Redirect to='/login' />}
-      </FormControl>
+      <div>
+          <SvgLogo size={logo_svg.size} color={logo_svg.color}></SvgLogo>
+          <FormControl className={classes.profile_form}>
+              <div className={classes.logoswithtext}>
 
+                  <h1 className={classes.text_style}>{username}</h1>
+                  <Button className={classes.logout_button} onClick={logout}>Log out</Button>
+              </div>
+              {localStorage.getItem('token') == null && <Redirect to='/login' />}
+          </FormControl>
+      </div>
   )
 }
 

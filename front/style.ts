@@ -65,8 +65,8 @@ export const useStyles = makeStyles({
         margin: '35px 10px 25px 10px',
     },
     profile_form: {
-        display: 'flex',
-        'justify-content': 'center',
+        position: 'absolute',
+        right: 0,
         'align-items': 'center',
         'width': '250px',
         'min-width': '200px',
@@ -74,6 +74,18 @@ export const useStyles = makeStyles({
         'background-color': 'white',
         'border-radius': '20px',
         margin: '35px 10px 25px 10px',
+    },
+    mails_form: {
+        display: 'flex',
+        'flex-direction': 'row',
+        'flex-wrap': 'wrap',
+        'align-items': 'center',
+        'width': '99%',
+        'min-height': '20vh',
+        'max-height': '60vh',
+        'height': '80vh',
+        'background-color': 'white',
+        padding: '1em',
     },
     login_wrapper: {
         display: 'flex',
@@ -113,6 +125,8 @@ export const useStyles = makeStyles({
         bottom: 0,
         left: 0,
         right: 0,
+        'min-height': '100%',
+        'min-width': '100%',
     },
     main_page: {
         background: 'gray',
@@ -143,6 +157,22 @@ export const useStyles = makeStyles({
     data: {
         'max-width' : '300px',
         'overflow-wrap': 'break-word',
+    },
+    mail_menu: {
+        width: '15%',
+        height: '100%',
+        overflow: 'auto',
+    },
+    mail_view: {
+        width: '85%',
+        height: '100%',
+    },
+    mail_menu_button: {
+        height: '100%',
+        width: '100%',
+        'border': 'none',
+        visibility: 'hidden',
+        overflow: 'auto',
     },
     logoswithtext: {
         display: 'flex',

@@ -13,9 +13,7 @@ const ProfilePage: React.FC = () => {
   return(
       <div>
           <Box className={useStyles().bg}>
-              <Box display='flex' justifyContent="center" p={10} >
                   <Profile/>
-              </Box>
           </Box>
       </div>
   )
