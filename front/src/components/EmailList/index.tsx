@@ -21,6 +21,15 @@ import FirstPageIcon from '@material-ui/icons/FirstPage';
 import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 import PropTypes from 'prop-types';
+import { setPage, setRowsPerPage, changeCurrent } from './viewslice';
+import {UpdateLogo} from '../UpdateLogo/logo';
+
+
+interface attachment {
+    filename: string;
+    content: string;
+    encoding: string;
+}
 
 function TablePaginationActions(props: any) {
   const classes = useStyles();
@@ -105,61 +114,130 @@ const MailList: React.FC  = () => {
       return () => clearInterval(interval);
     }, []);
 
-    const [page, setPage] = React.useState(0);
-    const [rowsPerPage, setRowsPerPage] = React.useState(5);
+    //const [page, setPage] = React.useState(0);
+    //const [rowsPerPage, setRowsPerPage] = React.useState(5);
+    const page = useAppSelector(state => state.mail_view.page);
+    const rowsPerPage = useAppSelector(state => state.mail_view.rowsPerPage);
+    const currentEmail = useAppSelector(state => state.mail_view.currentEmail);
 
     const emptyRows = rowsPerPage - Math.min(rowsPerPage, mails.length - page * rowsPerPage);
-
     const handleChangePage = (event: any, newPage: any) => {
-      setPage(newPage);
+      //setPage(newPage);
+        dispatch(setPage(newPage));
     };
-
     const handleChangeRowsPerPage = (event:any) => {
-      setRowsPerPage(parseInt(event.target.value, 10));
-      setPage(0);
+      //setRowsPerPage(parseInt(event.target.value, 10));
+      //setPage(0);
+        dispatch(setRowsPerPage(parseInt(event.target.value, 10)));
+        dispatch(setPage(0));
     };
 
   return (
       <FormControl className={classes.mails_form}>
           <div className={classes.mail_menu}>
-            <Button>asd</Button>
-            <TableContainer component={Paper}>
-              <Table aria-label="simple table">
+              <div>
+                  <Button onClick={() => {updateMails()}} className={classes.update_button}><UpdateLogo size={30} color={'white'}></UpdateLogo></Button>
+
+              </div>
+            <TableContainer className={classes.mail_menu_table}  component={Paper}>
+              <Table  aria-label="simple table">
                 <TableHead>
                   <TableRow>
-                    <TablePagination
-                        rowsPerPageOptions={[]}
+                    <TablePagination className={classes.table_pagination}
+                        rowsPerPageOptions={[5, 10, 25]}
                         colSpan={3}
                         count={mails.length}
+                        labelRowsPerPage=''
                         rowsPerPage={rowsPerPage}
                         page={page}
-                        SelectProps={{
-                          inputProps: { 'aria-label': 'Rows' },
-                          native: true,
-                        }}
                         onChangePage={handleChangePage}
                         onChangeRowsPerPage={handleChangeRowsPerPage}
                         ActionsComponent={TablePaginationActions}
                     />
                   </TableRow>
+                    <TableRow>
+                        <TableCell className={classes.text_bold}>Subject</TableCell>
+                        <TableCell className={classes.text_bold} align="right">From</TableCell>
+                        <TableCell className={classes.text_bold} align="right">Targets</TableCell>
+                    </TableRow>
                 </TableHead>
                 <TableBody>
                   {(rowsPerPage > 0
                           ? mails.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                           : mails
                   ).map((row, index) => (
-                      <TableRow onClick={() => alert(index + page * rowsPerPage)} key={row.id}>
+                      <TableRow onClick={() => dispatch(changeCurrent(index + page * rowsPerPage))} key={row.id}>
                         <TableCell className={classes.text_d} component="th" scope="row">
                           {row.subject}
                         </TableCell>
                         <TableCell className={classes.text_d} align="right">{row.from}</TableCell>
+                          <TableCell className={classes.text_d} align="right">{JSON.parse(row.to).length}</TableCell>
                       </TableRow>
                   ))}
                 </TableBody>
               </Table>
             </TableContainer>
           </div>
-        <div className={classes.mail_view}>{(mails.length).toString()}</div>
+        <div className={classes.mail_view}>
+            {currentEmail !== -1 && <div>
+                <div className={classes.field}>
+                    <div className={classes.text_bold}>
+                        From:
+                    </div>
+                    <div className={classes.text_filed}>
+                        {mails[currentEmail].from}
+                    </div>
+                </div>
+
+                <div className={classes.field}>
+                    <div className={classes.text_bold}>
+                        To:
+                    </div>
+                    <div className={classes.text_filed}>
+                        {JSON.parse(mails[currentEmail].to).join(', ')}
+                    </div>
+                </div>
+
+                <div className={classes.field}>
+                    <div className={classes.text_bold}>
+                        Subject:
+                    </div>
+                    <div className={classes.text_filed}>
+                        {mails[currentEmail].subject}
+                    </div>
+                </div>
+
+                <div className={classes.mail_body}>
+                    <div className={classes.text_bold}>
+                        Body:
+                    </div>
+                    <div className={classes.text_filed}>
+                        {mails[currentEmail].body}
+                    </div>
+                </div>
+
+                <div className={classes.field}>
+                    <div className={classes.text_bold}>
+                        Attachments:
+                    </div>
+                    <div className={classes.text_filed}>
+                        <div className={classes.mail_menu_attachments}>
+                            {JSON.parse(mails[currentEmail].attachments).map((row: attachment) => (
+                                <a className={classes.attachments_menu} download={row.filename} href={"data:image/png;base64,"+row.content}>{row.filename}</a>
+                            ))}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            }
+            {currentEmail === -1 &&
+            <div className={classes.field}>
+                <div className={classes.text_bold}>
+                    Select task to view
+                </div>
+            </div>
+            }
+        </div>
     </FormControl>
   )
 }

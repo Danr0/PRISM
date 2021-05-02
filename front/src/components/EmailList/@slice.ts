@@ -12,7 +12,6 @@ export interface mail {
   attachments: string;
 }
 
-// Define a type for the slice state
 export interface listMails {
   mails: mail[];
 }
@@ -26,14 +25,12 @@ export const getMails = createAsyncThunk(
     }
 )
 
-// Define the initial state using that type
 const initialState: listMails = {
   mails: []
 }
 
 export const mailsSlice = createSlice({
   name: 'mails',
-  // `createSlice` will infer the state type from the `initialState` argument
   initialState,
   reducers: {
     changeMails: (state, action:PayloadAction<mail[]>) => {
@@ -42,9 +39,9 @@ export const mailsSlice = createSlice({
   }
 })
 
-export const { changeMails } = mailsSlice.actions
 
-// Other code such as selectors can use the imported `RootState` type
-// export const selectCount = (state: RootState) => state.counter.value
+
+
+export const { changeMails } = mailsSlice.actions
 
 export default mailsSlice.reducer

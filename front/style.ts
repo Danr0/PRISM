@@ -149,6 +149,18 @@ export const useStyles = makeStyles({
         'font-family': 'Roboto, sans-serif',
         'font-weight': 300,
     },
+    text_bold: {
+        color: 'black',
+        'font-family': 'Roboto, sans-serif',
+        'font-weight': 'bold',
+    },
+    text_filed: {
+        'margin-left': '15px',
+        color: 'black',
+        'font-family': 'Roboto, sans-serif',
+        'font-weight': 300,
+        overflow: 'auto',
+    },
     text_style: {
         color: 'black',
         'font-family': "Roboto",
@@ -164,15 +176,16 @@ export const useStyles = makeStyles({
         'overflow-wrap': 'break-word',
     },
     mail_menu: {
-        width: '15%',
+        width: '20%',
         height: '100%',
         overflow: 'auto',
         '-ms-overflow-style': 'none',
         'scrollbar-width': 'none',
     },
     mail_view: {
-        width: '85%',
+        width: '80%',
         height: '100%',
+        overflow: 'auto',
     },
     mail_menu_button: {
         height: '100%',
@@ -202,5 +215,57 @@ export const useStyles = makeStyles({
     },
     profile: {
         display: 'flex',
-    }
+    },
+    field: {
+        display: 'flex',
+        'box-shadow': '5px 5px 5px grey',
+        margin: '15px 15px 15px 15px',
+        'border-color': 'black',
+        'border-style': 'solid',
+        padding: '5px',
+        background: '#F5F5F5',
+    },
+    mail_body: {
+        display: 'flex',
+        'flex-direction': 'column',
+        'box-shadow': '5px 5px 5px grey',
+        margin: '15px 15px 15px 15px',
+        'border-color': 'black',
+        'border-style': 'solid',
+        padding: '5px',
+        background: '#F5F5F5',
+    },
+    mail_menu_table: {
+        background: '#F5F5F5',
+    },
+    mail_menu_attachments: {
+        display: 'flex',
+    },
+    mail_menu_buttons: {
+        display: 'flex',
+    },
+    attachments_menu: {
+        'margin-left': '15px',
+        'font-family': 'Roboto, sans-serif',
+        'font-weight': 300,
+    },
+    update_button: {
+        display:'block',
+        height: '60px',
+        width: '60px',
+        'border-radius': '50%',
+        'text-align': 'center',
+        background: '#0062ff',
+        'border': 'none',
+        'color': 'white',
+        'cursor': 'pointer',
+        ':focus': {
+            outline: 'none',
+        },
+        'margin-bottom': '15px',
+    },
+    table_pagination: {
+        overflow: 'auto',
+        'justify-content': 'start',
+}
 })
