@@ -243,6 +243,8 @@ export const useStyles = makeStyles({
     },
     mail_menu_buttons: {
         display: 'flex',
+        'flex-grow': 2,
+        'justify-content': 'space-between',
     },
     attachments_menu: {
         'margin-left': '15px',
@@ -264,8 +266,28 @@ export const useStyles = makeStyles({
         },
         'margin-bottom': '15px',
     },
+    button_new_task: {
+        width: '150px',
+        height: '38px',
+        background: '#0062ff',
+        'border-radius': '10px',
+        'border': 'none',
+        'color': 'white',
+        'font-size': '12px',
+        'text-align': 'center',
+        'cursor': 'pointer',
+        'margin-top': '10px',
+        'margin-left': '15px',
+    },
     table_pagination: {
         overflow: 'auto',
         'justify-content': 'start',
-}
+    },
+    error_table: {
+        background: '#d68b8b',
+    },
+    error_table_div: {
+        overflow: 'auto',
+        margin: '15px 15px 15px 15px',
+    }
 })

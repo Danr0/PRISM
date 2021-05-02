@@ -6,6 +6,7 @@ import loginFormReducer from './components/LoginForm/@slice';
 import registerFormReducer from './components/RegisterForm/@slice';
 import getUserProfileReducer from "./components/Profile/@slice";
 import mailViewReducer from './components/EmailList/viewslice';
+import ErrorMsgReducer from './components/ErrorList/@slice';
 
 export const history = createBrowserHistory();
 
@@ -17,7 +18,8 @@ const reducer = {
   loginForm: loginFormReducer,
   registerForm: registerFormReducer,
   profile: getUserProfileReducer,
-  mail_view: mailViewReducer
+  mail_view: mailViewReducer,
+  errors: ErrorMsgReducer
   // auth:
 }
 

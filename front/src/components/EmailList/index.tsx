@@ -3,16 +3,16 @@ import {changeMails, getMails, listMails, mail} from './@slice'
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import {useStyles} from "../../../style";
 import {
-  FormControl,
-  Paper,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-  Button,
-  useTheme, IconButton, TablePagination
+    FormControl,
+    Paper,
+    Table,
+    TableBody,
+    TableCell,
+    TableContainer,
+    TableHead,
+    TableRow,
+    Button,
+    useTheme, IconButton, TablePagination, Link
 } from "@material-ui/core";
 import {useEffect} from "react";
 import {makeStyles} from "@material-ui/core/styles";
@@ -23,6 +23,7 @@ import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 import PropTypes from 'prop-types';
 import { setPage, setRowsPerPage, changeCurrent } from './viewslice';
 import {UpdateLogo} from '../UpdateLogo/logo';
+import ErrorsList from "../ErrorList/index";
 
 
 interface attachment {
@@ -135,9 +136,9 @@ const MailList: React.FC  = () => {
   return (
       <FormControl className={classes.mails_form}>
           <div className={classes.mail_menu}>
-              <div>
+              <div className={classes.mail_menu_buttons}>
                   <Button onClick={() => {updateMails()}} className={classes.update_button}><UpdateLogo size={30} color={'white'}></UpdateLogo></Button>
-
+                  <Link href="/profile"><Button className={classes.button_new_task}>New Task</Button></Link>
               </div>
             <TableContainer className={classes.mail_menu_table}  component={Paper}>
               <Table  aria-label="simple table">
@@ -228,6 +229,8 @@ const MailList: React.FC  = () => {
                         </div>
                     </div>
                 </div>
+
+                <ErrorsList id={mails[currentEmail].id.toString()}></ErrorsList>
             </div>
             }
             {currentEmail === -1 &&
