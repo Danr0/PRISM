@@ -13,7 +13,8 @@ export interface NewMail {
     to: string[];
     subject: string;
     body: string;
-    attachments: NewAttachment[]
+    attachments: NewAttachment[];
+    ok: boolean;
 }
 
 export interface ResponceEmail {
@@ -30,7 +31,8 @@ const initialState: NewMail = {
     to: [],
     subject: '',
     body: '',
-    attachments: []
+    attachments: [],
+    ok: false,
 }
 
 export const createNewTask = createAsyncThunk(
@@ -72,10 +74,13 @@ export const NewMailSlice = createSlice({
         },
         addNewAttachments: (state, action:PayloadAction<NewAttachment>) => {
             state.attachments.push(action.payload)
-        }
+        },
+        changeOk: (state, action:PayloadAction<boolean>) => {
+            state.ok = action.payload
+        },
     }
 })
 
-export const {changeFrom, changeTo, changeSubject, changeBody, changeNewAttachments, addNewAttachments } = NewMailSlice.actions
+export const {changeFrom, changeTo, changeSubject, changeBody, changeNewAttachments, addNewAttachments, changeOk } = NewMailSlice.actions
 
 export default NewMailSlice.reducer

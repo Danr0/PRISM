@@ -7,15 +7,18 @@ import {
     changeBody,
     addNewAttachments,
     changeNewAttachments,
+    changeOk,
     createNewTask,
     NewMail,
     NewAttachment,
     ResponceEmail
 } from './@slice';
 import {useAppDispatch, useAppSelector} from "../../hooks";
-import {Button, FormControl, Link, TextField} from "@material-ui/core";
+import {Button, FormControl, IconButton, Link, TextField} from "@material-ui/core";
 import {useStyles} from "../../../style";
 import {SvgLogo} from "../Logo/logo";
+import {Alert} from "@material-ui/lab";
+import CloseIcon from "@material-ui/icons/Close";
 
 const CreateEmail: React.FC  = () => {
     const from = useAppSelector(state => state.new_task.from);
@@ -23,6 +26,7 @@ const CreateEmail: React.FC  = () => {
     const subject = useAppSelector(state => state.new_task.subject);
     const body = useAppSelector(state => state.new_task.body);
     const attachments = useAppSelector(state => state.new_task.attachments);
+    const ok = useAppSelector(state => state.new_task.ok);
     const dispatch = useAppDispatch();
     const classes = useStyles();
 
@@ -71,12 +75,14 @@ const CreateEmail: React.FC  = () => {
             to: to,
             subject: subject,
             body: editor_body.toString('html'),
-            attachments: attachments
+            attachments: attachments,
+            ok: false,
         }
         if (localStorage.getItem('token') !== null){
             const resp = await dispatch(createNewTask(final_obj));
             const data = resp.payload as ResponceEmail;
             console.log(data);
+            dispatch(changeOk(true));
         }
 
     }
@@ -144,6 +150,20 @@ const CreateEmail: React.FC  = () => {
                 </div>
 
             </FormControl>
+            { ok && <Alert severity="success"
+                           action={
+                               <IconButton
+                                   aria-label="close"
+                                   color="inherit"
+                                   size="small"
+                                   onClick={() => {
+                                       dispatch(changeOk(false));
+                                   }}
+                               >
+                                   <CloseIcon fontSize="inherit" />
+                               </IconButton>
+                           }
+            >Task created!</Alert>}
         </div>
       )
 }
