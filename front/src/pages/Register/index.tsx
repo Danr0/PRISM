@@ -1,5 +1,4 @@
 import * as React from 'react';
-import NavBar from "../../components/NavBar";
 import RegisterForm from "../../components/RegisterForm";
 import {Box} from "@material-ui/core";
 import {useStyles} from "../../../style";

@@ -103,7 +103,6 @@ export const useStyles = makeStyles({
         'flex-wrap': 'wrap',
         'align-items': 'center',
         'min-height': '20vh',
-        'max-height': '60vh',
         'background-color': 'white',
         padding: '1em',
     },
@@ -131,16 +130,25 @@ export const useStyles = makeStyles({
         'font-size': '12px',
         'color': '#92929d'
     },
-    input_text_new_mail: {
+    input_div_new_mail: {
         'z-index': 1,
-        width: '320px',
-        height: '38px',
+        width: '90%',
+        height: '78px',
         border: '1px solid #f1f1f5',
         'box-sizing': 'border-box',
         'background': '#fafafb',
-        'margin-bottom': '20px',
         'font-size': '12px',
-        'color': '#92929d'
+        'color': '#92929d',
+        display: "flex",
+        'justify-content': 'center',
+    },
+    input_text_new_mail: {
+        width: '95%',
+    },
+    input_body_new_mail: {
+        width: '90%',
+        border: '1px solid #f1f1f5',
+        'background': '#fafafb',
     },
     attachments_new_mail: {
         'z-index': 1,
@@ -192,9 +200,11 @@ export const useStyles = makeStyles({
     text_bold: {
         color: 'black',
         'font-family': 'Roboto, sans-serif',
-        'font-weight': 'bold',
+        'font-weight': 300,
+        'font-size': '110%',
     },
     text_filed: {
+        'margin-top': '1.5px',
         'margin-left': '15px',
         color: 'black',
         'font-family': 'Roboto, sans-serif',
@@ -258,20 +268,20 @@ export const useStyles = makeStyles({
     },
     field: {
         display: 'flex',
-        'box-shadow': '5px 5px 5px grey',
         margin: '15px 15px 15px 15px',
-        'border-color': 'black',
+        'border-color': '#A0A0A0',
         'border-style': 'solid',
+        'border-width': 'thin',
         padding: '5px',
         background: '#F5F5F5',
     },
     mail_body: {
         display: 'flex',
         'flex-direction': 'column',
-        'box-shadow': '5px 5px 5px grey',
         margin: '15px 15px 15px 15px',
-        'border-color': 'black',
+        'border-color': '#A0A0A0',
         'border-style': 'solid',
+        'border-width': 'thin',
         padding: '5px',
         background: '#F5F5F5',
     },
@@ -336,7 +346,8 @@ export const useStyles = makeStyles({
         'justify-content': 'start',
     },
     error_table: {
-        background: '#d68b8b',
+        background: '#ff9f90',
+        color: 'black',
     },
     error_table_div: {
         overflow: 'auto',

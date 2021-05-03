@@ -87,6 +87,7 @@ const CreateEmail: React.FC  = () => {
 
     }
 
+
     return(
         <div>
             <FormControl className={classes.new_mail_form}>
@@ -94,20 +95,28 @@ const CreateEmail: React.FC  = () => {
                     <SvgLogo size={logo_svg.size} color={logo_svg.color}></SvgLogo>
                     <h1 className={classes.text}>New task editor</h1>
                 </div>
-                <TextField  className={classes.input_text_new_mail} id="From" placeholder="From" label="From" InputLabelProps={{style: { color: 'black' }}}
-                            value={from}
-                            onChange={(event) => dispatch(changeFrom(event.target.value))}/>
-                <TextField  className={classes.input_text_new_mail} id="To" placeholder="To" label="To" InputLabelProps={{style: { color: 'black' }}}
+                <div className={classes.input_div_new_mail}>
+                    <TextField  className={classes.input_text_new_mail} id="From" placeholder="From" label="From" InputLabelProps={{style: { color: 'black' }}}
+                                value={from}
+                                onChange={(event) => dispatch(changeFrom(event.target.value))}/>
+                </div>
+                <div className={classes.input_div_new_mail}>
+                            <TextField  className={classes.input_text_new_mail} id="To" placeholder="To" label="To" InputLabelProps={{style: { color: 'black' }}}
                             value={to}
                             onChange={(event) => dispatch(changeTo(event.target.value.replace(/\s+/g, '').split(',')))}/>
-                <TextField  className={classes.input_text_new_mail} id="Subject" placeholder="Subject" label="Subject" InputLabelProps={{style: { color: 'black' }}}
+                </div>
+                <div className={classes.input_div_new_mail}>
+                            <TextField  className={classes.input_text_new_mail} id="Subject" placeholder="Subject" label="Subject" InputLabelProps={{style: { color: 'black' }}}
                             value={subject}
                             onChange={(event) => dispatch(changeSubject(event.target.value))}/>
-                <RichTextEditor
-                    value={editor_body}
-                    onChange={(value) => {
-                        set_editor_body(value)
-                    }}
+                </div>
+                            <RichTextEditor
+                                className={classes.input_body_new_mail}
+                                value={editor_body}
+                                placeholder={'Type here:'}
+                                onChange={(value) => {
+                                    set_editor_body(value)
+                                }}
                     />
                 { attachments.length > 0 &&
                 <div className={classes.attachments_new_mail}>

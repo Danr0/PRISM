@@ -41,17 +41,17 @@ const ErrorsList: React.FC<ErrorsListProps> = props => {
                         <Table aria-label="simple table">
                             <TableHead>
                                 <TableRow>
-                                    <TableCell>To</TableCell>
-                                    <TableCell align="right">Error</TableCell>
+                                    <TableCell className={classes.text_bold}>To</TableCell>
+                                    <TableCell className={classes.text_bold} align="right">Error</TableCell>
                                 </TableRow>
                             </TableHead>
                             <TableBody>
                                 {errors.map((row) => (
                                     <TableRow key={row.id}>
-                                        <TableCell component="th" scope="row">
+                                        <TableCell className={classes.text_d} component="th" scope="row">
                                             {row.to}
                                         </TableCell>
-                                        <TableCell align="right">{row.err_msg}</TableCell>
+                                        <TableCell className={classes.text_d} align="right">{row.err_msg}</TableCell>
                                     </TableRow>
                                 ))}
                             </TableBody>

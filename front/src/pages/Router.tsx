@@ -14,12 +14,12 @@ export const Router: React.FC = () => {
     <BrowserRouter>
       <React.Suspense fallback={<div/>}>
         <Switch>
-          <Route exact path={Routes.ROOT} component={Root}/>
           <Route exact path={Routes.LOGIN} component={Login}/>
           <Route exact path={Routes.MAIL} component={Mail}/>
           <Route exact path={Routes.NEW_TASK} component={NewTask}/>
           <Route exact path={Routes.REGISTER} component={Register}/>
           <Route exact path={Routes.PROFILE} component={ProfilePage}/>
+          <Route path="*" component={Root}/>
         </Switch>
       </React.Suspense>
     </BrowserRouter>
