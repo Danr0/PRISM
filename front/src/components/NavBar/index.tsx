@@ -27,7 +27,7 @@ const NavBar: React.FC<IProps> = (props: IProps) => {
                   {RoutesNames.MAIL}
               </Button>
           </Link>
-                <Link  to={Routes.GROUPS}>
+                <Link  to={Routes.NEW_TASK}>
             <Button className={classes.menu_item}>
             {RoutesNames.GROUPS}
             </Button>

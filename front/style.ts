@@ -40,6 +40,18 @@ export const useStyles = makeStyles({
             cursor: 'not-allowed',
         }
     },
+    button_clear: {
+        height: '38px',
+        background: '#0062ff',
+        'border-radius': '10px',
+        'border': 'none',
+        'color': 'white',
+        'font-size': '12px',
+        'text-align': 'center',
+        'cursor': 'pointer',
+        'margin-left': '15px',
+        'margin-right': '15px',
+    },
     login_form: {
         display: 'flex',
         'flex-direction': 'column',
@@ -81,9 +93,17 @@ export const useStyles = makeStyles({
         'flex-wrap': 'wrap',
         'align-items': 'center',
         'width': '99%',
+        'max-height': '60vh',
+        'background-color': 'white',
+        padding: '1em',
+    },
+    new_mail_form: {
+        display: 'flex',
+        'flex-direction': 'column',
+        'flex-wrap': 'wrap',
+        'align-items': 'center',
         'min-height': '20vh',
         'max-height': '60vh',
-        'height': '80vh',
         'background-color': 'white',
         padding: '1em',
     },
@@ -110,6 +130,26 @@ export const useStyles = makeStyles({
         'margin-bottom': '15px',
         'font-size': '12px',
         'color': '#92929d'
+    },
+    input_text_new_mail: {
+        'z-index': 1,
+        width: '320px',
+        height: '38px',
+        border: '1px solid #f1f1f5',
+        'box-sizing': 'border-box',
+        'background': '#fafafb',
+        'margin-bottom': '20px',
+        'font-size': '12px',
+        'color': '#92929d'
+    },
+    attachments_new_mail: {
+        'z-index': 1,
+        border: '1px solid #f1f1f5',
+        'box-sizing': 'border-box',
+        'background': '#fafafb',
+        'margin-top': '20px',
+        'color': '#92929d',
+        display: "flex",
     },
     menu_item: {
         background: 'Gray',
@@ -279,6 +319,18 @@ export const useStyles = makeStyles({
         'margin-top': '10px',
         'margin-left': '15px',
     },
+    button_back: {
+        height: '38px',
+        background: '#0062ff',
+        'border-radius': '10px',
+        'border': 'none',
+        'color': 'white',
+        'font-size': '12px',
+        'text-align': 'center',
+        'cursor': 'pointer',
+        'margin-top': '10px',
+        'margin-right': '40px',
+    },
     table_pagination: {
         overflow: 'auto',
         'justify-content': 'start',
@@ -289,5 +341,18 @@ export const useStyles = makeStyles({
     error_table_div: {
         overflow: 'auto',
         margin: '15px 15px 15px 15px',
-    }
+    },
+    attachment_upload_button_div: {
+        display: 'flex',
+        'flex-grow': 2,
+        'justify-content': 'space-between',
+        'margin-top': '15px',
+    },
+    back_button: {
+        'display': 'flex',
+        'flex-direction': 'row',
+        'justify-content': 'space-between',
+        width: '100%'
+    },
+
 })

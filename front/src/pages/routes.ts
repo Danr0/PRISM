@@ -4,7 +4,7 @@ enum Routes {
   REGISTER = '/register',
   PROFILE = '/profile',
   MAIL = '/mail',
-  GROUPS = '/groups'
+  NEW_TASK = '/new'
 }
 
 export enum RoutesNames {

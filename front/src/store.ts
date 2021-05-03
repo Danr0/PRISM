@@ -7,6 +7,7 @@ import registerFormReducer from './components/RegisterForm/@slice';
 import getUserProfileReducer from "./components/Profile/@slice";
 import mailViewReducer from './components/EmailList/viewslice';
 import ErrorMsgReducer from './components/ErrorList/@slice';
+import NewMailReducer from "./components/CreateEmail/@slice";
 
 export const history = createBrowserHistory();
 
@@ -19,8 +20,8 @@ const reducer = {
   registerForm: registerFormReducer,
   profile: getUserProfileReducer,
   mail_view: mailViewReducer,
-  errors: ErrorMsgReducer
-  // auth:
+  errors: ErrorMsgReducer,
+  new_task: NewMailReducer
 }
 
 export const store = configureStore({

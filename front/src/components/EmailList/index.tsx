@@ -138,7 +138,7 @@ const MailList: React.FC  = () => {
           <div className={classes.mail_menu}>
               <div className={classes.mail_menu_buttons}>
                   <Button onClick={() => {updateMails()}} className={classes.update_button}><UpdateLogo size={30} color={'white'}></UpdateLogo></Button>
-                  <Link href="/profile"><Button className={classes.button_new_task}>New Task</Button></Link>
+                  <Link href="/new"><Button className={classes.button_new_task}>New Task</Button></Link>
               </div>
             <TableContainer className={classes.mail_menu_table}  component={Paper}>
               <Table  aria-label="simple table">
