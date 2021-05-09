@@ -16,11 +16,7 @@ export class MailsController {
     @HttpCode(200)
     async createNewMail(@Request() req, @Body() createMailDto: CreateMailDto) {
             const saved_mail = await this.mailsService.createNewMail(createMailDto,req.user);
-            let to_mails = createMailDto.to;
-            for (let entry of to_mails) {
-                let obj = {body:createMailDto.body,attachments: createMailDto.attachments,subject:createMailDto.subject,from:createMailDto.from,to:entry,mail_id:saved_mail.id, transporter:createMailDto.transporter};
-                this.client.emit('mail', obj);
-            }
+            await this.mailsService.createNewTask(createMailDto, saved_mail);
             return(
                 saved_mail
             )
@@ -34,28 +30,4 @@ export class MailsController {
             )
     }
 
-    /*
-    @MessagePattern('error')
-    getNotifications(@Payload() data: string, @Ctx() context: RmqContext) {
-        console.log(data);
-    }
-
-    data:
-    nodejs      | {
-nodejs      |   err_msg: { code: 'EENVELOPE', command: 'API' },
-nodejs      |   mail_id: 6,
-nodejs      |   to: 'testtest.ee1'
-nodejs      | }
-
-    @Post('test')
-    @HttpCode(200)
-    async test(@Request() req,  @Body() createMailDto: CreateMailDto) {
-        let to_mails = createMailDto.to;
-        for (let entry of to_mails) {
-            let obj = {body:createMailDto.body,attachments: createMailDto.attachments,subject:createMailDto.subject,from:createMailDto.from,to:entry};
-            this.client.emit('mail', obj);
-        }
-        return 'true';
-    }
-     */
 }

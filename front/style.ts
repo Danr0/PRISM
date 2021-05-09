@@ -94,11 +94,13 @@ export const useStyles = makeStyles({
         'align-items': 'center',
         'width': '99%',
         'max-height': '60vh',
+        'border-radius': '20px',
         'background-color': 'white',
         padding: '1em',
     },
     new_mail_form: {
         display: 'flex',
+        'border-radius': '20px',
         'flex-direction': 'column',
         'flex-wrap': 'wrap',
         'align-items': 'center',
