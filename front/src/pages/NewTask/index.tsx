@@ -22,3 +22,5 @@ const NewTask: React.FC = () => {
 }
 
 export default NewTask;
+
+// <Profile/>

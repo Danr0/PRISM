@@ -1,6 +1,9 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import {fetchDataAuth} from '../../utils/API';
 import RichTextEditor, {EditorValue} from 'react-rte';
+import {TransporterObject, createCustomConfig} from "./transporters";
+
+export type mails_types = 'yandex' | 'mail.ru'| 'campus.mephi.ru' | 'custom';
 
 export interface NewAttachment {
     filename: string;
@@ -15,6 +18,8 @@ export interface NewMail {
     body: string;
     attachments: NewAttachment[];
     ok: boolean;
+    trans_conf: TransporterObject;
+    type: mails_types
 }
 
 export interface ResponceEmail {
@@ -33,6 +38,8 @@ const initialState: NewMail = {
     body: '',
     attachments: [],
     ok: false,
+    trans_conf: createCustomConfig('',465,true,'',''),
+    type: "custom",
 }
 
 export const createNewTask = createAsyncThunk(
@@ -43,7 +50,8 @@ export const createNewTask = createAsyncThunk(
                 to: data.to,
                 subject: data.subject,
                 body: data.body,
-                attachments: data.attachments
+                attachments: data.attachments,
+                transporter: data.trans_conf
             }),
             method: 'POST',
         };
@@ -78,9 +86,33 @@ export const NewMailSlice = createSlice({
         changeOk: (state, action:PayloadAction<boolean>) => {
             state.ok = action.payload
         },
+        changeType: (state, action:PayloadAction<string>) => {
+            state.type = action.payload as mails_types;
+        },
+        changeTrans_conf: (state, action:PayloadAction<TransporterObject>) => {
+            state.trans_conf = action.payload
+        },
+        changeTransUser: (state, action:PayloadAction<string>) => {
+            state.trans_conf.auth.user = action.payload
+        },
+        changeTransPassword: (state, action:PayloadAction<string>) => {
+            state.trans_conf.auth.pass = action.payload
+        },
+        changeTransHost: (state, action:PayloadAction<string>) => {
+            state.trans_conf.host = action.payload
+        },
+        changeTransPort: (state, action:PayloadAction<number>) => {
+            state.trans_conf.port = action.payload
+        },
+        changeTransSecure: (state, action:PayloadAction<boolean>) => {
+            state.trans_conf.secure = action.payload
+        },
     }
 })
 
-export const {changeFrom, changeTo, changeSubject, changeBody, changeNewAttachments, addNewAttachments, changeOk } = NewMailSlice.actions
+export const {changeFrom, changeTo, changeSubject, changeBody,
+    changeNewAttachments, addNewAttachments, changeOk, changeType,
+    changeTrans_conf, changeTransPassword, changeTransUser,
+    changeTransHost, changeTransPort,changeTransSecure } = NewMailSlice.actions
 
 export default NewMailSlice.reducer

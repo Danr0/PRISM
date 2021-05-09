@@ -8,6 +8,19 @@ class Attachment {
     encoding: string;
 }
 
+class TransporterObject {
+    host: string;
+    port: number;
+    secure: boolean;
+    auth?: {
+        user: string;
+        pass: string;
+    };
+    tls?: {
+        ciphers:string;
+    }
+}
+
 export class CreateMailDto {
 
     @IsNotEmpty()
@@ -15,10 +28,12 @@ export class CreateMailDto {
 
     attachments: Attachment[];
 
-    from: string
+    from: string;
 
-    to: string[]
+    to: string[];
 
-    subject: string
+    subject: string;
+
+    transporter: TransporterObject;
 
 }

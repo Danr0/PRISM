@@ -8,17 +8,30 @@ import {
     addNewAttachments,
     changeNewAttachments,
     changeOk,
+    changeType,
+    changeTrans_conf,
+    changeTransPassword,
+    changeTransUser,
+    changeTransHost, changeTransPort, changeTransSecure,
     createNewTask,
     NewMail,
     NewAttachment,
-    ResponceEmail
+    ResponceEmail, mails_types
 } from './@slice';
 import {useAppDispatch, useAppSelector} from "../../hooks";
-import {Button, FormControl, IconButton, Link, TextField} from "@material-ui/core";
+import {Button, Checkbox, FormControl, IconButton, Link, MenuItem, TextField} from "@material-ui/core";
 import {useStyles} from "../../../style";
 import {SvgLogo} from "../Logo/logo";
 import {Alert} from "@material-ui/lab";
 import CloseIcon from "@material-ui/icons/Close";
+import {
+    createCustomConfig,
+    createSmtpCampusMephiConfig,
+    createSmtpMailRuConfig,
+    createSmtpYandexConfig,
+    TransporterObject
+} from "./transporters";
+import { FormControlLabel } from '@material-ui/core';
 
 const CreateEmail: React.FC  = () => {
     const from = useAppSelector(state => state.new_task.from);
@@ -27,14 +40,57 @@ const CreateEmail: React.FC  = () => {
     const body = useAppSelector(state => state.new_task.body);
     const attachments = useAppSelector(state => state.new_task.attachments);
     const ok = useAppSelector(state => state.new_task.ok);
+    const trans_type = useAppSelector(state => state.new_task.type);
+    const trans_conf = useAppSelector(state => state.new_task.trans_conf);
     const dispatch = useAppDispatch();
     const classes = useStyles();
 
     // do it by Usesate, because if by dispatch it almost 1 sec delay for every symbol
     const [editor_body, set_editor_body] = useState(RichTextEditor.createEmptyValue());
 
+    const types_of_mails = [
+        {
+            value: 'yandex',
+            label: 'yandex',
+        },
+        {
+            value: 'mail.ru',
+            label: 'mail',
+        },
+        {
+            value: 'campus.mephi.ru',
+            label: 'mephi',
+        },
+        {
+            value: 'custom',
+            label: 'custom',
+        },
+    ];
+
     function updateBody(editor_body: EditorValue) {
         dispatch(changeBody(editor_body.toString('html')))
+    }
+
+    function updateConf(trans_type: mails_types, trans_conf: TransporterObject):TransporterObject  {
+        if (trans_type == 'yandex')
+        {
+            const tmp_conf = createSmtpYandexConfig(trans_conf.auth.user, trans_conf.auth.pass);
+            dispatch(changeTrans_conf(tmp_conf));
+            return tmp_conf;
+        }
+        else if (trans_type == 'mail.ru')
+        {
+            const tmp_conf = createSmtpMailRuConfig(trans_conf.auth.user, trans_conf.auth.pass);
+            dispatch(changeTrans_conf(tmp_conf));
+            return tmp_conf;
+        }
+        else if (trans_type == 'campus.mephi.ru')
+        {
+            const tmp_conf = createSmtpCampusMephiConfig(trans_conf.auth.user, trans_conf.auth.pass);
+            dispatch(changeTrans_conf(tmp_conf));
+            return tmp_conf;
+        }
+        return trans_conf;
     }
 
     const logo_svg = {
@@ -47,6 +103,7 @@ const CreateEmail: React.FC  = () => {
             Array.from(e).forEach(file => { getBase64(file) });
         }
     };
+
 
     const onLoad = (fileString : string | null | ArrayBuffer, name: string) => {
         if (fileString !== null) {
@@ -70,6 +127,7 @@ const CreateEmail: React.FC  = () => {
 
     async function createBackRequest(){
         updateBody(editor_body);
+        const new_conf = updateConf(trans_type, trans_conf);
 
         const final_obj = {from: from,
             to: to,
@@ -77,6 +135,8 @@ const CreateEmail: React.FC  = () => {
             body: editor_body.toString('html'),
             attachments: attachments,
             ok: false,
+            trans_conf: new_conf,
+            type: trans_type
         }
         if (localStorage.getItem('token') !== null){
             const resp = await dispatch(createNewTask(final_obj));
@@ -95,6 +155,51 @@ const CreateEmail: React.FC  = () => {
                     <SvgLogo size={logo_svg.size} color={logo_svg.color}></SvgLogo>
                     <h1 className={classes.text}>New task editor</h1>
                 </div>
+                <div className={classes.input_type_new_mail}>
+                    <TextField
+                        id="outlined-select-mail-type"
+                        select
+                        label="Mail type"
+                        value={trans_type}
+                        onChange={(event)=> dispatch(changeType(event.target.value))}
+                        variant="outlined"
+                    >
+                        {types_of_mails.map((option) => (
+                            <MenuItem key={option.value} value={option.value}>
+                                {option.label}
+                            </MenuItem>
+                        ))}
+                    </TextField>
+                    <TextField  id="trans_login" placeholder="Mail" label="Mail" InputLabelProps={{style: { color: 'black' }}}
+                                value={trans_conf.auth.user}
+                                onChange={(event) => dispatch(changeTransUser(event.target.value))}/>
+                    <TextField  id="trans_password" placeholder="Password" label="Password" InputLabelProps={{style: { color: 'black' }}}
+                                value={trans_conf.auth.pass}
+                                type={'password'}
+                                onChange={(event) => dispatch(changeTransPassword(event.target.value))}/>
+                </div>
+                {trans_type == 'custom' &&
+                <div className={classes.input_type_new_mail}>
+                    <TextField  id="trans_host" placeholder="Host" label="Host" InputLabelProps={{style: { color: 'black' }}}
+                                value={trans_conf.host}
+                                onChange={(event) => dispatch(changeTransHost(event.target.value))}/>
+                    <TextField  id="trans_port" placeholder="Port" label="Port" InputLabelProps={{style: { color: 'black' },shrink: true}}
+                                value={trans_conf.port}
+                                type="number"
+                                onChange={(event) => dispatch(changeTransPort(parseInt(event.target.value)))}/>
+                    <FormControlLabel
+                        control={
+                            <Checkbox
+                                checked={trans_conf.secure}
+                                onChange={(event) => dispatch(changeTransSecure(event.target.checked))}
+                                name="Secure"
+                                color="primary"
+                            />
+                        }
+                        label="Secure"
+                    />
+                </div>
+                }
                 <div className={classes.input_div_new_mail}>
                     <TextField  className={classes.input_text_new_mail} id="From" placeholder="From" label="From" InputLabelProps={{style: { color: 'black' }}}
                                 value={from}

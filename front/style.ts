@@ -142,6 +142,18 @@ export const useStyles = makeStyles({
         display: "flex",
         'justify-content': 'center',
     },
+    input_type_new_mail: {
+        'z-index': 1,
+        width: '90%',
+        height: '78px',
+        border: '1px solid #f1f1f5',
+        'box-sizing': 'border-box',
+        'background': '#fafafb',
+        'font-size': '12px',
+        'color': '#92929d',
+        display: "flex",
+        'justify-content': 'space-around',
+    },
     input_text_new_mail: {
         width: '95%',
     },

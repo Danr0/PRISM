@@ -1,10 +1,12 @@
 const amqp = require('amqplib/callback_api');
 const  nodemailer = require('nodemailer');
 
+/*
 // local smtp server for dev
 let transporter = nodemailer.createTransport(
     `smtp://login:pasword@127.0.0.1:25`
 );
+ */
 
 amqp.connect('amqp://test-user:test-user@localhost', function(error, connection) {
     connection.createChannel(function(error, channel) {
@@ -37,10 +39,11 @@ amqp.connect('amqp://test-user:test-user@localhost', function(error, connection)
                 from : mes.data.from,
                 to : mes.data.to,
                 subject : mes.data.subject,
-                text: mes.data.body,
-                attachments: mes.data.attachments
+                attachments: mes.data.attachments,
+                html: mes.data.body
             };
 
+            let transporter = nodemailer.createTransport(mes.data.transporter);
             // send mail
             transporter.sendMail( mailOptions, (error, info) => {
                 if (error) {

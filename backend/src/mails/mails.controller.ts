@@ -15,29 +15,23 @@ export class MailsController {
     @Post()
     @HttpCode(200)
     async createNewMail(@Request() req, @Body() createMailDto: CreateMailDto) {
-        if (req.user) {
             const saved_mail = await this.mailsService.createNewMail(createMailDto,req.user);
             let to_mails = createMailDto.to;
             for (let entry of to_mails) {
-                let obj = {body:createMailDto.body,attachments: createMailDto.attachments,subject:createMailDto.subject,from:createMailDto.from,to:entry,mail_id:saved_mail.id};
+                let obj = {body:createMailDto.body,attachments: createMailDto.attachments,subject:createMailDto.subject,from:createMailDto.from,to:entry,mail_id:saved_mail.id, transporter:createMailDto.transporter};
                 this.client.emit('mail', obj);
             }
             return(
                 saved_mail
             )
-        }
-        throw new UnauthorizedException();
     }
 
     @UseGuards(AuthGuard('jwt'))
     @Get()
     async getAllMails(@Request() req) {
-        if(req.user){
             return(
                 this.mailsService.getAllMails(req.user)
             )
-        }
-        throw new UnauthorizedException();
     }
 
     /*

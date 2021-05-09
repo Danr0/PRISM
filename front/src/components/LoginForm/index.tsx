@@ -55,11 +55,14 @@ const LoginForm: React.FC  = () => {
                 <h1 className={classes.text}>Login</h1>
             </div>
 
-      <TextField  className={classes.input} id="username" placeholder="username" label="Username" InputLabelProps={{style: { color: 'black' }}}
+      <TextField  className={classes.input} id="username" placeholder="username" label="Username"
+                  InputLabelProps={{style: { color: 'black' }}}
                   value={login}
                   onChange={(event) => dispatch(changeLogin(event.target.value))}/>
-      <TextField className={classes.input} id="password" placeholder="password" label="Password" InputLabelProps={{style: { color: 'black' }}}
+      <TextField className={classes.input} id="password" placeholder="password" label="Password"
+                 InputLabelProps={{style: { color: 'black' }}}
                   value={password}
+                 type={'password'}
                   onChange={(event) => dispatch(changePassword(event.target.value))}/>
       <Button className={classes.button} onClick={
         () => dispatch(loginUser({login, password}))
