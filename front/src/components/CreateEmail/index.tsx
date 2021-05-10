@@ -29,6 +29,7 @@ import {
     createSmtpCampusMephiConfig,
     createSmtpMailRuConfig,
     createSmtpYandexConfig,
+    createSmtpGoogleConfig,
     TransporterObject
 } from "./transporters";
 import { FormControlLabel } from '@material-ui/core';
@@ -56,6 +57,10 @@ const CreateEmail: React.FC  = () => {
         {
             value: 'mail.ru',
             label: 'mail',
+        },
+        {
+            value: 'google.com',
+            label: 'google',
         },
         {
             value: 'campus.mephi.ru',
@@ -87,6 +92,12 @@ const CreateEmail: React.FC  = () => {
         else if (trans_type == 'campus.mephi.ru')
         {
             const tmp_conf = createSmtpCampusMephiConfig(trans_conf.auth.user, trans_conf.auth.pass);
+            dispatch(changeTrans_conf(tmp_conf));
+            return tmp_conf;
+        }
+        else if (trans_type == 'google.com')
+        {
+            const tmp_conf = createSmtpGoogleConfig(trans_conf.auth.user, trans_conf.auth.pass);
             dispatch(changeTrans_conf(tmp_conf));
             return tmp_conf;
         }

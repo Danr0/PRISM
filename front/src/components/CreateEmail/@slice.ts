@@ -3,7 +3,7 @@ import {fetchDataAuth} from '../../utils/API';
 import RichTextEditor, {EditorValue} from 'react-rte';
 import {TransporterObject, createCustomConfig} from "./transporters";
 
-export type mails_types = 'yandex' | 'mail.ru'| 'campus.mephi.ru' | 'custom';
+export type mails_types = 'yandex' | 'mail.ru'| 'campus.mephi.ru' | 'google.com' | 'custom';
 
 export interface NewAttachment {
     filename: string;

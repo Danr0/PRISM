@@ -8,7 +8,7 @@ let transporter = nodemailer.createTransport(
     port: 465,
     secure: true,
     auth: {
-        user: 'denp00@mail.ru',
+        user: '',
         pass: '',
     },
 }
@@ -22,7 +22,7 @@ let transporter = nodemailer.createTransport(
     port: 465,
     secure: true,
     auth: {
-        user: 'B18505@yandex.ru',
+        user: '',
         pass: '',
     },
 }
@@ -30,12 +30,13 @@ let transporter = nodemailer.createTransport(
 
  */
 
+/*
 let transporter = nodemailer.createTransport({
     host: "mail.campus.mephi.ru",
     port: 465,
     secure: false,
     auth: {
-        user: 'pdv015@campus.mephi.ru',
+        user: '',
         pass: '',
     },
     tls:{
@@ -43,12 +44,24 @@ let transporter = nodemailer.createTransport({
     }
 });
 
+ */
 
+let transporter = nodemailer.createTransport(
+    {
+        host: "smtp.gmail.com",
+        port: 465,
+        secure: true,
+        auth: {
+            user: '',
+            pass: '',
+        },
+    }
+);
 
 
 const mailOptions = {
     "from":"",
-    "to":["denp00@yandex.ru"],
+    "to":[""],
     "subject":"test",
     "html": "<b>Hello world2</b>",
     "attachments":[{

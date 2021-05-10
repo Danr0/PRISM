@@ -40,6 +40,20 @@ export function createSmtpMailRuConfig(login: string, password: string): Transpo
     )
 }
 
+export function createSmtpGoogleConfig(login: string, password: string): TransporterObject {
+    return (
+        {
+            host: "smtp.gmail.com",
+            port: 465,
+            secure: true,
+            auth: {
+                user: login,
+                pass: password,
+            },
+        }
+    )
+}
+
 export function createSmtpCampusMephiConfig(login: string, password: string): TransporterObject {
     return (
         {
