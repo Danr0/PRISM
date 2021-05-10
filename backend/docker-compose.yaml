@@ -6,7 +6,7 @@ services:
     build: ./docker/postgres
     image: postgresdb
     ports:
-      - ${POSTGRES_PORT}:5432
+      - 127.0.0.1:${POSTGRES_PORT}:5432
     networks:
       dev:
         aliases:
@@ -35,7 +35,7 @@ services:
     depends_on:
       - postgres
     ports:
-     - ${PORT}:3000
+     - 127.0.0.1:${PORT}:3000
     command: yarn start:dev
     restart: always
 
@@ -52,6 +52,19 @@ services:
       dev:
         aliases:
           - ${RABBIT_ALIAS}
+  nginx:
+    container_name: nginx-front
+    build: ./../front/
+    depends_on:
+      - nodejs
+    ports:
+      - 8080:80
+    restart: always
+    networks:
+      dev:
+        aliases:
+          - nginx-container
+
 networks:
   dev:
     external:

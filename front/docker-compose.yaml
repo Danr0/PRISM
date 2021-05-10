@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  nginx:
+    container_name: nginx-front
+    build: .
+    ports:
+      - 8080:80
+    restart: always
+
+networks:
+  dev:
+    external:
+      name: dev
