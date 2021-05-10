@@ -8,7 +8,7 @@ let transporter = nodemailer.createTransport(
 );
  */
 
-amqp.connect('amqp://test-user:test-user@localhost', function(error, connection) {
+amqp.connect('amqp://main-user:hochu_avtomat322*()@84.252.142.34', function(error, connection) {
     connection.createChannel(function(error, channel) {
         // rabbitmq queue names
         const queue = 'mails';

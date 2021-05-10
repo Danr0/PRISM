@@ -1,4 +1,24 @@
 # PRIvate Spam Mailer
+## Quick setup
+### 1. Clone project: 
+### `git clone https://github.com/Danr0/PRISM`
+### 2. Move to path: 
+### `cd  ./PRISM/backend`
+### 3. Change secrets: 
+### `nano .env`
+### 4. Build: 
+### ` docker-compose build`
+### 5. Run: 
+### ` docker-compose up`
+## Agent Setup
+### 1. Move to path:
+### `cd  ./PRISM/agent`
+### 2. Install dep:
+### `yarn instal`
+### 3. Change connection string:
+### `nano recieve.ts`
+### 4. (Turn on VPN or proxy) Run agent:
+### `yarn agent`
 ## Ready SMTP configs
 ### Yandex: 
 Use login/pass
