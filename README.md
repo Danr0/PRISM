@@ -2,7 +2,7 @@
 ## Ready SMTP configs
 ### Yandex: 
 Use login/pass
-###Mail.ru: 
+### Mail.ru: 
 Use login/pass
 ### Google.com: 
 Use login/pass with option "allow less secure apps to access your account" or login/app_password with 2fa
