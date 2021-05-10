@@ -11,7 +11,7 @@ const NewTask: React.FC = () => {
       <div>
           <Box className={useStyles().bg}>
               <Box display="flex" p={0} >
-
+                  <Profile/>
               </Box>
               <Box display='flex' justifyContent="center" p={10} >
                   <CreateEmail/>
